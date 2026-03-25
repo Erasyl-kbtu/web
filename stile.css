@@ -113,3 +113,17 @@ footer {
     color: white;
     margin-top: 50px;
 }
+
+.dark-mode {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.dark-mode .card {
+    background-color: #2d2d2d;
+    color: #fff;
+}
+
+.dark-mode header {
+    background-color: #000;
+}
