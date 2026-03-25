@@ -1,38 +1,29 @@
-// Ждем, пока весь HTML загрузится
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. Находим все кнопки в карточках
+    // --- 1. ЛОГИКА КАРТОЧЕК ---
     const buttons = document.querySelectorAll('.card button');
 
-    // 2. Перебираем каждую кнопку и вешаем на нее "слушатель" клика
-    buttons.forEach((button, index) => {
+    buttons.forEach((button) => {
         button.addEventListener('click', () => {
-            
-            // Получаем заголовок именно той карточки, где нажата кнопка
             const cardTitle = button.parentElement.querySelector('h3').innerText;
+            alert(`Вы выбрали: ${cardTitle}`);
             
-            // Выводим сообщение
-            alert(`Вы выбрали: ${cardTitle}\nСкоро здесь будет больше информации!`);
-
-            // Добавим немного интерактива: меняем цвет фона карточки
             button.parentElement.style.backgroundColor = '#e1f5fe';
             button.innerText = 'Выбрано ✅';
         });
-    
-        // Создадим кнопку переключения темы программно
+    });
+
+    // --- 2. ЛОГИКА ТЕМЫ (вынесена из цикла) ---
     const themeBtn = document.createElement('button');
     themeBtn.innerText = 'Сменить тему 🌙';
-    themeBtn.style.position = 'fixed';
-    themeBtn.style.bottom = '20px';
-    themeBtn.style.right = '20px';
+    // Добавим класс для стилизации через CSS, чтобы не писать стили в JS
+    themeBtn.classList.add('theme-toggle'); 
     document.body.appendChild(themeBtn);
 
     themeBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
         themeBtn.innerText = document.body.classList.contains('dark-mode') ? 'Светлая тема ☀️' : 'Темная тема 🌙';
-});
     });
 
-    // Бонус: Сделаем лог в консоль браузера (F12), чтобы видеть, что JS работает
-    console.log("Скрипт успешно запущен! Кнопки готовы к работе.");
+    console.log("Скрипт загружен: кнопка темы создана один раз, кнопки карточек активны.");
 });
