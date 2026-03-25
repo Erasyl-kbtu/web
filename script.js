@@ -1,18 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     // --- 1. ЛОГИКА КАРТОЧЕК ---
-    const buttons = document.querySelectorAll('.card button');
+    const buttons = document.querySelectorAll('.nav-btn');
 
-    buttons.forEach((button) => {
+    buttons.forEach(button => {
         button.addEventListener('click', () => {
-            const cardTitle = button.parentElement.querySelector('h3').innerText;
-            alert(`Вы выбрали: ${cardTitle}`);
-            
-            button.parentElement.style.backgroundColor = '#e1f5fe';
-            button.innerText = 'Выбрано ✅';
-        });
-    });
+            // Достаем значение из data-url
+            // JS автоматически превращает data-url в свойство dataset.url
+            const targetPage = button.dataset.url;
 
+            if (targetPage) {
+                console.log(`Кнопка нажата! Переходим на: ${targetPage}`);
+                window.location.href = targetPage;
+            } else {
+                console.error("У этой кнопки не указан адрес в data-url!");
+            }
+        });
+});
     // --- 2. ЛОГИКА ТЕМЫ (вынесена из цикла) ---
     const themeBtn = document.createElement('button');
     themeBtn.innerText = 'Сменить тему 🌙';
